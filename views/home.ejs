@@ -4,8 +4,15 @@
 <p><%= homeContent %></p>
 
 <% blogPosts.forEach((post)=> { %>
-    <h2><%= post.title %><h2>
-    <p><%= post.post %></p>
-<%})%>
-
-<%- include('partials/footer') -%>
+<h2>
+  <%= post.title %>
+  <h2>
+    <% let content = post.post.substring(0,130) %>
+    <p><%= content %> ...<a href="/post/<%=post.title%>">Read More</a></p>
+    <%})%>
+    <form class="home" action="/compose">
+      <button class="btn btn-primary home-btn">Compose New Post</button>
+    </form>
+    <%- include('partials/footer') -%>
+  </h2>
+</h2>
