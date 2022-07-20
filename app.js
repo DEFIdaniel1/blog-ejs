@@ -29,15 +29,17 @@ app.get("/contact", (req, res) => {
 app.get("/compose", (req, res) => {
   res.render("compose");
 });
-app.get('/post/:title', (req, res)=> {
-  const postTitle = _.lowerCase(req.params.title);
-  for(let i=0; i<posts.length; i++) {
+
+app.get("/post/:postName", (req, res) => {
+  const postTitle = _.lowerCase(req.params.postName);
+  for (let i = 0; i < posts.length; i++) {
     let loopTitle = _.lowerCase(posts[i].title);
     if (loopTitle === postTitle) {
-      console.log("Match found!");
+      console.log(posts[i].title);
+      console.log(posts[i].post);
+      res.render("post", { heading: posts[i].title, content: posts[i].post });
     } 
   }
-  res.render('post');
 });
 
 app.post("/compose", (req, res) => {
